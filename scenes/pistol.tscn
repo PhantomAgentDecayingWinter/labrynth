@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bry0c64jc80f3"]
+
+[ext_resource type="PackedScene" uid="uid://cq62j5dl5vl2n" path="res://scenes/ai/pistol/9mm_c10_pistol.glb" id="1_4xery"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_4xery")]
+
+[node name="Sketchfab_model" parent="." index="0"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, 0)

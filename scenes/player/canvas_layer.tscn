@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4l24t8s67ek"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kibba"]
+font_size = 50
+font_color = Color(1, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0.368627, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0.0980392, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kqypi"]
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -87.9999
+offset_right = 414.0
+offset_bottom = -18.9999
+grow_vertical = 0
+rotation = -0.0469586
+text = "PLZ FIX THIS LOL"
+label_settings = SubResource("LabelSettings_kibba")
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.3
+offset_top = 9.73499
+offset_right = 14.7
+offset_bottom = 32.735
+grow_horizontal = 2
+grow_vertical = 2
+text = "<speed>
+"
+label_settings = SubResource("LabelSettings_kqypi")
+
+[node name="Label3" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -12.0
+offset_right = 3.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "·"

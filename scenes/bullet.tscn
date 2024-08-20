@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5vkevdnurabj"]
+
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_dk1qp"]
+
+[sub_resource type="Curve" id="Curve_dlcwk"]
+_data = [Vector2(0, 0), 0.0, 0.913134, 0, 0, Vector2(0.645522, 0.441509), 0.284879, 0.0, 0, 0, Vector2(1, 0), -4.92176, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tiwo6"]
+transparency = 1
+albedo_color = Color(1, 1, 0, 0.0862745)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 16.0
+emission_intensity = 100000.0
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_1ic58"]
+material = SubResource("StandardMaterial3D_tiwo6")
+cap_top = false
+cap_bottom = false
+curve = SubResource("Curve_dlcwk")
+
+[sub_resource type="Curve" id="Curve_0qukq"]
+_data = [Vector2(0, 0.864151), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_36bkh"]
+curve = SubResource("Curve_0qukq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_df4fr"]
+spread = 25.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_36bkh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btosg"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+billboard_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_nvrtm"]
+material = SubResource("StandardMaterial3D_btosg")
+size = Vector3(0.01, 0.01, 0.01)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_40kj5"]
+height = 1.0
+
+[node name="Node3D" type="Node3D" groups=["bullet"]]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, -1.31134e-07, 0, 1.31134e-07, 0.75, 0, 0, 0)
+script = ExtResource("1_dk1qp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("TubeTrailMesh_1ic58")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0, -9.78916e-08, -0.559873)
+emitting = false
+amount = 30
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_df4fr")
+draw_pass_1 = SubResource("BoxMesh_nvrtm")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_40kj5")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

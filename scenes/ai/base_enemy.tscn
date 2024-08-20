@@ -1,0 +1,88 @@
+[gd_scene load_steps=14 format=3 uid="uid://6awisshrleyb"]
+
+[ext_resource type="Script" path="res://scripts/enemy-base.gd" id="1_uo1nu"]
+[ext_resource type="PackedScene" uid="uid://bry0c64jc80f3" path="res://scenes/pistol.tscn" id="2_2g6i1"]
+
+[sub_resource type="GDScript" id="GDScript_k3qbx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7wavl"]
+radial_segments = 8
+rings = 2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_428yn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oopu8"]
+radius = 200.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_apjuk"]
+radius = 250.0
+
+[sub_resource type="Curve" id="Curve_eyo57"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.648515, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jpgi7"]
+curve = SubResource("Curve_eyo57")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ymusq"]
+particle_flag_align_y = true
+spread = 90.0
+initial_velocity_min = 10.0
+initial_velocity_max = 15.0
+scale_curve = SubResource("CurveTexture_jpgi7")
+collision_use_scale = true
+
+[sub_resource type="Curve" id="Curve_l7a2j"]
+_data = [Vector2(0, 0), -5.90551, 11.4256, 0, 0, Vector2(0.292, 1), 0.0, 0.0, 0, 0, Vector2(0.34, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), -1.98456, -1.98456, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kp0ic"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_g6fb2"]
+material = SubResource("StandardMaterial3D_kp0ic")
+radius = 0.1
+curve = SubResource("Curve_l7a2j")
+
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["enemy"]]
+script = ExtResource("1_uo1nu")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+script = SubResource("GDScript_k3qbx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_7wavl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_428yn")
+
+[node name="gun_range" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="gun_range"]
+shape = SubResource("SphereShape3D_oopu8")
+
+[node name="detection_range" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="detection_range"]
+shape = SubResource("SphereShape3D_apjuk")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0.252507, 0)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ymusq")
+draw_pass_1 = SubResource("TubeTrailMesh_g6fb2")
+
+[node name="gun" parent="." instance=ExtResource("2_2g6i1")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -0.517984, 0.040956, 0.23565)
+
+[node name="Node3D" type="Node3D" parent="gun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.57628e-07, 0.527375, -2.32024)
+
+[connection signal="body_entered" from="gun_range" to="." method="_on_gun_range_body_entered"]
+[connection signal="body_exited" from="gun_range" to="." method="_on_gun_range_body_exited"]
+[connection signal="body_entered" from="detection_range" to="." method="_on_detection_range_body_entered"]

@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://brd4c1cxrv6ph"
+path="res://.godot/imported/cottage.map-b603a2c072292e087ab0634112557db4.tres"
+
+[deps]
+
+source_file="res://maps/cottage.map"
+dest_files=["res://.godot/imported/cottage.map-b603a2c072292e087ab0634112557db4.tres"]
+
+[params]
+

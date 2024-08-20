@@ -1,0 +1,210 @@
+[gd_scene load_steps=17 format=4 uid="uid://p2easnpdef8u"]
+
+[ext_resource type="Script" path="res://scripts/explosion.gd" id="1_jdf0h"]
+[ext_resource type="Script" path="res://addons/icosphere/IcosphereMesh.gd" id="2_dct8j"]
+[ext_resource type="AudioStream" uid="uid://yt52iod2q7x4" path="res://sounds/explode.wav" id="3_s2jgb"]
+
+[sub_resource type="Curve" id="Curve_2jxh8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.133663, 0.89434), 0.0, 0.0, 0, 0, Vector2(0.341584, 0.637736), 0.0, 0.0, 0, 0, Vector2(0.549505, 0.366038), 0.0, 0.0, 0, 0, Vector2(0.757426, 0.184906), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[sub_resource type="CurveTexture" id="CurveTexture_vk7b0"]
+curve = SubResource("Curve_2jxh8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_owiho"]
+lifetime_randomness = 1.0
+particle_flag_align_y = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, -19.2, 0)
+scale_curve = SubResource("CurveTexture_vk7b0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7qwv"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bb8k6"]
+material = SubResource("StandardMaterial3D_w7qwv")
+top_radius = 0.2
+bottom_radius = 0.0
+height = 1.0
+radial_segments = 4
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtyqp"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1og5m"]
+_surfaces = [{
+"aabb": AABB(-0.475528, -0.5, -0.5, 0.951056, 1, 1),
+"attribute_data": PackedByteArray("AAAAPwAAgD8AAAA/AAAAAGZmZj8LyCU/AAAAAOtvtD7NzMw9C8glP83MTD7rb7Q+mpmZPgvIJT/NzMw+62+0PgAAAD8LyCU/mpkZP+tvtD4zMzM/C8glP83MTD/rb7Q+ZmZmPwXkUj/NzMw9BeRSPwAAAAD7Gy0/zsxMPQAAAD8zM3M/AAAAP5qZGT4AAAA/zMzMPQrIpT7MzEw+7G80PgAAAADsbzQ+mpmZPgXkUj/NzEw++xstPwAAgD4AAAA/MzOzPgAAAD+ZmZk+C8ilPs3MzD7sbzQ+AAAAPwXkUj/NzMw++xstP2Zm5j4AAAA/zcwMPwAAAD8AAAA/CsilPpqZGT/sbzQ+MzMzPwXkUj+amRk/+xstP2ZmJj8AAAA/AABAPwAAAD8zMzM/C8ilPs3MTD/sbzQ+zcxMP/sbLT+amVk/AAAAP2ZmZj8KyKU+zcyMPwXkUj8AAIA/+xstPwAAgD/rb7Q+ZmaGPwAAAD8AAIA/7G80PqNwfT8AAIA/7FG4PQAAAABcj0I+AACAP+F6lD4AAAAAFa7HPgAAgD9I4fo+AAAAAD0KFz8AAIA/16MwPwAAAABwPUo/AACAPwrXYz8AAAAA"),
+"format": 34359742487,
+"index_count": 240,
+"index_data": PackedByteArray("LwAMACoADAACACsADAArACoADQAOAAQALAAtABAADwAEAA4ALQArABAAEAArAAIABAAPABEADwADABIADwASABEAEQASAAUAMAATABQAEwAFABIAEwASABQAFAASAAMAMQANABUADQAEABYADQAWABUAFQAWAAYABQAXABEAFwAGABYAFwAWABEAEQAWAAQABgAXABgAFwAFABkAFwAZABgAGAAZAAcAMgAaABMAGgAHABkAGgAZABMAEwAZAAUAMwAVABsAFQAGABwAFQAcABsAGwAcAAgABwAdABgAHQAIABwAHQAcABgAGAAcAAYACAAdAB4AHQAHAB8AHQAfAB4AHgAfAAkANAAgABoAIAAJAB8AIAAfABoAGgAfAAcANQAbACEAGwAIACIAGwAiACEAIQAiAAoACQAjAB4AIwAKACIAIwAiAB4AHgAiAAgACgAjACQAIwAJACUAIwAlACQAJAAlAAsANgAmACAAJgALACUAJgAlACAAIAAlAAkANwAhAAwAIQAKACcAIQAnAAwADAAnAAIACwAoACQAKAACACcAKAAnACQAJAAnAAoAAgAoABAAKAALACkAKAApABAAEAApACwAOAAuACYALgAsACkALgApACYAJgApAAsA"),
+"material": SubResource("StandardMaterial3D_mtyqp"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 57,
+"vertex_data": PackedByteArray("AAAAAAAAAL8AAAAAAAAAAAAAAD8AAAAATD65vjD5ZL5Rloa+LvnkvjD5ZD4AAAAATD65vjD5ZL5RloY+aoMNvjD5ZD5BxNk+aoMNPjD5ZL5BxNk+TD65PjD5ZD5RloY+LvnkPjD5ZL4AAAAATD65PjD5ZD5Rloa+aoMNPjD5ZL5BxNm+aoMNvjD5ZD5BxNm+QMRZvkDE2b56Nx6+QMRZvkDE2b56Nx4+QMTZvlGWhr4AAAAAcHjzvgAAAAB6Nx4+cHjzvgAAAAB6Nx6+GHmWvgAAAAC9G88+SS2wvlGWhj4AAIA+4VumvUDE2T4AAIA+UJaGvkDE2T4AAAAA4VumPUDE2b4AAIA+T5YGvlCWhr68G88+AAAAAAAAAAAAAAA/GHmWPgAAAAC9G88+T5YGPlCWhj68G88+QMRZPkDE2T56Nx4+UJaGPkDE2b4AAAAASS2wPlGWhr4AAIA+cHjzPgAAAAB6Nx4+cHjzPgAAAAB6Nx6+QMTZPlGWhj4AAAAAQMRZPkDE2T56Nx6+4VumPUDE2b4AAIC+SS2wPlGWhr4AAIC+GHmWPgAAAAC9G8++AAAAAAAAAAAAAAC/T5YGPlCWhj68G8++4VumvUDE2T4AAIC+T5YGvlCWhr68G8++GHmWvgAAAAC9G8++SS2wvlGWhj4AAIC+QMRZvkDE2b56Nx4+QMTZvlGWhr4AAAAALvnkvjD5ZD4AAAAAcHjzvgAAAAB6Nx4+UJaGvkDE2T4AAAAAAAAAAAAAAL8AAAAAAAAAAAAAAD8AAAAAAAAAAAAAAL8AAAAAAAAAAAAAAD8AAAAAAAAAAAAAAL8AAAAAAAAAAAAAAD8AAAAAAAAAAAAAAL8AAAAAAAAAAAAAAD8AAAAAAAAAAAAAAL8AAAAAAAAAAAAAAD8AAAAA/38AAAAA/7//f///AAD/v70hlzZoSi3CqiqqqrZttq1nSUFevazZxYZpXKRag4KXeJaiW1tEjZGXtr2haEotwlTVVFW2bbatQd5nyb2s2cWi23kWWoOCl1wkhelbRI2RskRZIhI648qmXU07PiSy1+QwG0+NZ8bTYx//fxKdRrsAAGOf7GJGuyJK/38/qZujmkxCpx6GWKRBcvTHh0g8rxtPGs//PzisvY0KODYfWqDwauBVlUZahP9//3//fwCA3LX/f79Wm6MOlR6qQlb3qViiscQSOuPK47DkMP8/OKxks7xY9UjdpJvg/3/sYka7//9jnxKdRrsaz+OwjWfG00y7pd0+JLLXCbi+DYdIPK+72GUzHoZYpP//Iso/qZuj//////9/AIDg1e/qlUZahPVHQPI2H1qgHioPFUJW96kAACLKv1abo0Mnmcz1SN2kpl1NOz4kstfkMBtPjWfG06oqqqq2bbatYx//fxKdRrsbTxrP/z84rP9/AAAAAP+//3///wAA/7//fwAAAAD/v/9///8AAP+//38AAAAA/7//f///AAD/v/9/AAAAAP+//3///wAA/7//fwAAAAD/v/9///8AAP+/")
+}]
+script = ExtResource("2_dct8j")
+radius = 0.5
+heigth = 1.0
+_uv_type = 0
+edge_count = 2
+
+[sub_resource type="Animation" id="Animation_o2y5s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:mesh:surface_0/material:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShapeCast3D:shape:radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.25]
+}
+
+[sub_resource type="Animation" id="Animation_5xs13"]
+resource_name = "bang"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 0.450625),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(5, 5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:mesh:surface_0/material:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 0, 1), Color(1, 1, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3t5w4"]
+resource_name = "bigBang"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(5, 5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:mesh:surface_0/material:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0.443137, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShapeCast3D:shape:radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.0]
+}
+
+[sub_resource type="Animation" id="Animation_jou4v"]
+resource_name = "bng"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sgoqh"]
+_data = {
+"RESET": SubResource("Animation_o2y5s"),
+"bang": SubResource("Animation_5xs13"),
+"bigBang": SubResource("Animation_3t5w4"),
+"bng": SubResource("Animation_jou4v")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p76uw"]
+radius = 1.25
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+script = ExtResource("1_jdf0h")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 30
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_owiho")
+draw_pass_1 = SubResource("CylinderMesh_bb8k6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_1og5m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sgoqh")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_s2jgb")
+max_db = 5.0
+max_distance = 4096.0
+max_polyphony = 2
+panning_strength = 3.0
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+shape = SubResource("SphereShape3D_p76uw")
+target_position = Vector3(0, 0, 0)
